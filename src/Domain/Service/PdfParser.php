@@ -8,6 +8,11 @@ use jobiq\Domain\Trait\Loggable;
 use jobiq\Domain\Trait\Readable;
 use Monolog\Logger;
 
+/**
+ * PdfParser Class
+ *
+ * Contains specific logic for parsing a PDF
+ */
 class PdfParser implements Entity, Parser
 {
     use Loggable, Readable;

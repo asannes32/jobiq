@@ -52,15 +52,74 @@ class Resume implements Entity
     }
 
     /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Resume
+     */
+    public function setName(string $name): Resume
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    /**
      * @return array
      */
-    public function getDetails(): array
+    public function getLocation(): array
     {
-        return [
-            'name' => $this->name,
-            'location' => $this->location,
-            'skills' => $this->skills,
-            'experience' => $this->experience
-        ];
+        return $this->location;
+    }
+
+    /**
+     * @param array $location
+     * @return Resume
+     */
+    public function setLocation(array $location): Resume
+    {
+        $this->location = $location;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getSkills(): array
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param array $skills
+     * @return Resume
+     */
+    public function setSkills(array $skills): Resume
+    {
+        $this->skills = $skills;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExperience(): array
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param array $experience
+     * @return Resume
+     */
+    public function setExperience(array $experience): Resume
+    {
+        $this->experience = $experience;
+        return $this;
     }
 }

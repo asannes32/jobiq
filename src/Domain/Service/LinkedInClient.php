@@ -8,6 +8,7 @@ use Monolog\Logger;
 
 /**
  * LinkedInClient Class
+ *
  * Contains specific logic for connecting to Indeed via api
  */
 class LinkedInClient implements Entity, Client
@@ -19,8 +20,10 @@ class LinkedInClient implements Entity, Client
         $this->setLogger($logger);
     }
 
-    public function getListings(): array
+    public function getListings(array $keywords = null): array
     {
+        // search using api
+        // todo - create Listing[] to return using ListingFactory
         return [];
     }
 }

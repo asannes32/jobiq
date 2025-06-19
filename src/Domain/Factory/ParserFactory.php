@@ -7,6 +7,11 @@ use jobiq\Domain\Interface\Factory;
 use Pimple\Container;
 use SplFileInfo;
 
+/**
+ * ParserFactory Class
+ *
+ * Contains specific logic for obfuscating creation of Parser objects
+ */
 class ParserFactory implements Factory
 {
     /**

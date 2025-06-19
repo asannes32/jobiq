@@ -7,6 +7,11 @@ use jobiq\Domain\Interface\Entity;
 use jobiq\Domain\Interface\Factory;
 use Pimple\Container;
 
+/**
+ * ResumeFactory Class
+ *
+ * Contains specific logic for obfuscating creation of Resume objects
+ */
 class ResumeFactory implements Factory
 {
     /**

@@ -8,15 +8,30 @@ use jobiq\Domain\Interface\Entity;
 use jobiq\Domain\Interface\Factory;
 use Pimple\Container;
 
+/**
+ * ListingFactory Class
+ *
+ * Contains specific logic for obfuscating creation of Listing objects
+ */
 class ListingFactory implements Factory
 {
+    /**
+     * @var Container
+     */
     private Container $container;
 
+    /**
+     * @param Container $container
+     */
     public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * @param array $details
+     * @return Entity
+     */
     public function create(array $details): Entity
     {
         switch ($details['source']) {

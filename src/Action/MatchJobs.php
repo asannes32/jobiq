@@ -4,12 +4,8 @@ declare(strict_types=1);
 namespace jobiq\Action;
 
 use jobiq\Domain\Factory\ClientFactory;
-use jobiq\Domain\Factory\ParserFactory;
 use jobiq\Domain\Factory\ResumeFactory;
-use jobiq\Domain\Interface\Client;
 use jobiq\Domain\Service\Analyzer;
-use jobiq\Domain\Service\IndeedClient;
-use jobiq\Domain\Service\LinkedInClient;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -44,9 +40,10 @@ class MatchJobs
         $resume = $this->container->get(ResumeFactory::class)->create(['path' => 'path/to/file.pdf']);
 
         // search
+        // todo - my brain says there's a better way to do this, but I haven't identified the right solution yet. It doesn't conform to OCP.
         $listings = array_merge(
-            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'LinkedIn'])->getListings($resume),
-            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'Indeed'])->getListings($resume)
+            $this->container->get(ClientFactory::class)->create(['source' => 'LinkedIn'])->getListings($resume->getskills()),
+            $this->container->get(ClientFactory::class)->create(['source' => 'Indeed'])->getListings($resume->getskills())
         );
 
         // score

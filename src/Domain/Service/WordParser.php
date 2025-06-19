@@ -8,6 +8,11 @@ use jobiq\Domain\Trait\Loggable;
 use jobiq\Domain\Trait\Readable;
 use Monolog\Logger;
 
+/**
+ * WordParser Class
+ *
+ * Contains specific logic for parsing a Word doc
+ */
 class WordParser implements Entity, Parser
 {
     use Loggable, Readable;
