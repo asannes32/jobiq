@@ -49,7 +49,7 @@ class MatchJobs
     {
         /** @var Resume $resume */
         $resume = $this->container->get(ResumeFactory::class)
-            ->create(['path' => 'path/to/file.pdf']);
+            ->create(['path' => '../../resume.pdf']);
 
         /** @var Listing[] $listings */
         $listings = $this->container->get(JobFinder::class)
