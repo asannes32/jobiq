@@ -4,7 +4,7 @@ namespace jobiq\Domain\Trait;
 
 use jobiq\Domain\Interface\Parser;
 
-trait Readable
+trait Parsable
 {
     /** @var string */
     protected string $path;

@@ -5,7 +5,7 @@ namespace jobiq\Domain\Service;
 use jobiq\Domain\Interface\Entity;
 use jobiq\Domain\Interface\Parser;
 use jobiq\Domain\Trait\Loggable;
-use jobiq\Domain\Trait\Readable;
+use jobiq\Domain\Trait\Parsable;
 use Monolog\Logger;
 
 /**
@@ -15,7 +15,7 @@ use Monolog\Logger;
  */
 class PdfParser implements Entity, Parser
 {
-    use Loggable, Readable;
+    use Loggable, Parsable;
 
     /**
      * @param Logger $logger

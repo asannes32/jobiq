@@ -3,6 +3,7 @@
 namespace jobiq\Domain\Service;
 
 use jobiq\Domain\Interface\Entity;
+use jobiq\Domain\Model\Resume;
 use jobiq\Domain\Trait\Loggable;
 use Monolog\Logger;
 
@@ -15,8 +16,8 @@ class Analyzer implements Entity
         $this->setLogger($logger);
     }
 
-    public function score()
+    public function score(array $listings, Resume $resume): array
     {
-
+        return [];
     }
 }
