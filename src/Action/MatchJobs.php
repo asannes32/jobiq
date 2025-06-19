@@ -4,7 +4,8 @@ declare(strict_types=1);
 namespace jobiq\Action;
 
 use jobiq\Domain\Factory\ClientFactory;
-use jobiq\Domain\Factory\ReaderFactory;
+use jobiq\Domain\Factory\ParserFactory;
+use jobiq\Domain\Factory\ResumeFactory;
 use jobiq\Domain\Interface\Client;
 use jobiq\Domain\Service\Analyzer;
 use jobiq\Domain\Service\IndeedClient;
@@ -40,19 +41,17 @@ class MatchJobs
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         // parse
-        $details = $this->container->get(ReaderFactory::class)
-            ->create(['path' => 'path/to/file.pdf'])
-            ->readFile();
+        $resume = $this->container->get(ResumeFactory::class)->create(['path' => 'path/to/file.pdf']);
 
         // search
         $listings = array_merge(
-            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'LinkedIn'])->getListings($details['keywords']),
-            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'Indeed'])->getListings($details['keywords'])
+            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'LinkedIn'])->getListings($resume),
+            $this->container->get(ClientFactory::class)->create(['jobBoard' => 'Indeed'])->getListings($resume)
         );
 
         // score
         $results = $this->container->get(Analyzer::class)
-            ->score($listings, $details);
+            ->score($listings, $resume);
 
         return $response->withJson($results)->withStatus(StatusCode::HTTP_OK);
     }

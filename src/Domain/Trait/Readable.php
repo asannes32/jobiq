@@ -2,7 +2,7 @@
 
 namespace jobiq\Domain\Trait;
 
-use jobiq\Domain\Interface\FileReader;
+use jobiq\Domain\Interface\Parser;
 
 trait Readable
 {
@@ -19,9 +19,9 @@ trait Readable
 
     /**
      * @param string $path
-     * @return FileReader
+     * @return Parser
      */
-    public function setPath(string $path): FileReader
+    public function setPath(string $path): Parser
     {
         $this->path = $path;
         return $this;

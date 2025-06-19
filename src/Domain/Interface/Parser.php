@@ -2,9 +2,9 @@
 
 namespace jobiq\Domain\Interface;
 
-interface FileReader
+interface Parser
 {
     public function getPath(): string;
-    public function setPath(string $path): FileReader;
-    public function read(): array;
+    public function setPath(string $path): Parser;
+    public function parse(): array;
 }

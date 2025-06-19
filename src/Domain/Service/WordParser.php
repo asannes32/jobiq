@@ -3,12 +3,12 @@
 namespace jobiq\Domain\Service;
 
 use jobiq\Domain\Interface\Entity;
-use jobiq\Domain\Interface\FileReader;
+use jobiq\Domain\Interface\Parser;
 use jobiq\Domain\Trait\Loggable;
 use jobiq\Domain\Trait\Readable;
 use Monolog\Logger;
 
-class WordReader implements Entity, FileReader
+class WordParser implements Entity, Parser
 {
     use Loggable, Readable;
 
@@ -17,7 +17,7 @@ class WordReader implements Entity, FileReader
         $this->setLogger($logger);
     }
 
-    public function read(): array
+    public function parse(): array
     {
         $path = $this->getPath();
 

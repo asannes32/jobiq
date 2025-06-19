@@ -7,12 +7,13 @@ use jobiq\Action\HelloWorld;
 use jobiq\Action\MatchJobs;
 use jobiq\Domain\Factory\ClientFactory;
 use jobiq\Domain\Factory\ListingFactory;
-use jobiq\Domain\Factory\ReaderFactory;
+use jobiq\Domain\Factory\ParserFactory;
+use jobiq\Domain\Factory\ResumeFactory;
 use jobiq\Domain\Service\Analyzer;
 use jobiq\Domain\Service\IndeedClient;
 use jobiq\Domain\Service\LinkedInClient;
-use jobiq\Domain\Service\PdfReader;
-use jobiq\Domain\Service\WordReader;
+use jobiq\Domain\Service\PdfParser;
+use jobiq\Domain\Service\WordParser;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -37,8 +38,12 @@ class DependencyProvider implements ServiceProviderInterface
             return new ListingFactory($container);
         };
 
-        $container[ReaderFactory::class] = function (Container $container): ReaderFactory {
-            return new ReaderFactory($container);
+        $container[ParserFactory::class] = function (Container $container): ParserFactory {
+            return new ParserFactory($container);
+        };
+
+        $container[ResumeFactory::class] = function (Container $container): ResumeFactory {
+            return new ResumeFactory($container);
         };
 
         /**
@@ -52,12 +57,12 @@ class DependencyProvider implements ServiceProviderInterface
             return new IndeedClient($container['logger']);
         };
 
-        $container[PdfReader::class] = function (Container $container): PdfReader {
-            return new PdfReader($container['logger']);
+        $container[PdfParser::class] = function (Container $container): PdfParser {
+            return new PdfParser($container['logger']);
         };
 
-        $container[WordReader::class] = function (Container $container): WordReader {
-            return new WordReader($container['logger']);
+        $container[WordParser::class] = function (Container $container): WordParser {
+            return new WordParser($container['logger']);
         };
 
         $container[Analyzer::class] = function (Container $container): Analyzer {

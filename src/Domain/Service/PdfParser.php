@@ -3,12 +3,12 @@
 namespace jobiq\Domain\Service;
 
 use jobiq\Domain\Interface\Entity;
-use jobiq\Domain\Interface\FileReader;
+use jobiq\Domain\Interface\Parser;
 use jobiq\Domain\Trait\Loggable;
 use jobiq\Domain\Trait\Readable;
 use Monolog\Logger;
 
-class PdfReader implements Entity, FileReader
+class PdfParser implements Entity, Parser
 {
     use Loggable, Readable;
 
@@ -23,7 +23,7 @@ class PdfReader implements Entity, FileReader
     /**
      * @return string[]
      */
-    public function read(): array
+    public function parse(): array
     {
         $path = $this->getPath();
 
