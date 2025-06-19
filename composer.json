@@ -1,0 +1,19 @@
+{
+  "name": "verus/jobiq",
+  "description": "Playing with NLP and AI to parse and rate listings",
+  "authors": [
+    {
+      "name": "Andrew Sannes",
+      "email": "andrew.sannes@biworldwide.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "jobiq\\": "src/"
+    }
+  },
+  "require": {
+    "slim/slim": "^3.12",
+    "monolog/monolog": "^1.24"
+  }
+}
