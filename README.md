@@ -11,15 +11,15 @@ Create a web application that:
 
 ### To run this Dockerized PHP Slim app
 
-#### Copy the dockerfile 
+1. Copy the dockerfile 
 
 `$ cp docker-compose.yml.dist docker-compose.yml`
 
-#### Install Composer dependencies 
+2. Install Composer dependencies 
 
 `$ composer install`
 
-#### Run Docker
+3. Run Docker
 
 `$ docker-compose up -d`
 
