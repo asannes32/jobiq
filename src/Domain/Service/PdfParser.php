@@ -23,7 +23,7 @@ class PdfReader implements Entity, FileReader
     /**
      * @return string[]
      */
-    public function readFile(): array
+    public function read(): array
     {
         $path = $this->getPath();
 

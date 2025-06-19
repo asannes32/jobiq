@@ -6,5 +6,5 @@ interface FileReader
 {
     public function getPath(): string;
     public function setPath(string $path): FileReader;
-    public function readFile(): array;
+    public function read(): array;
 }

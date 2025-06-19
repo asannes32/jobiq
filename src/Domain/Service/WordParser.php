@@ -17,7 +17,7 @@ class WordReader implements Entity, FileReader
         $this->setLogger($logger);
     }
 
-    public function readFile(): array
+    public function read(): array
     {
         $path = $this->getPath();
 
