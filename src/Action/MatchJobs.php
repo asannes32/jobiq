@@ -5,7 +5,10 @@ namespace jobiq\Action;
 
 use jobiq\Domain\Factory\ClientFactory;
 use jobiq\Domain\Factory\ResumeFactory;
+use jobiq\Domain\Interface\Listing;
+use jobiq\Domain\Model\Resume;
 use jobiq\Domain\Service\Analyzer;
+use jobiq\Domain\Service\JobFinder;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Container\NotFoundExceptionInterface;
@@ -36,17 +39,15 @@ class MatchJobs
      */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
-        // parse
-        $resume = $this->container->get(ResumeFactory::class)->create(['path' => 'path/to/file.pdf']);
+        /** @var Resume $resume */
+        $resume = $this->container->get(ResumeFactory::class)
+            ->create(['path' => 'path/to/file.pdf']);
 
-        // search
-        // todo - my brain says there's a better way to do this, but I haven't identified the right solution yet. It doesn't conform to OCP.
-        $listings = array_merge(
-            $this->container->get(ClientFactory::class)->create(['source' => 'LinkedIn'])->getListings($resume->getskills()),
-            $this->container->get(ClientFactory::class)->create(['source' => 'Indeed'])->getListings($resume->getskills())
-        );
+        /** @var Listing[] $listings */
+        $listings = $this->container->get(JobFinder::class)
+            ->search($resume->getSkills());
 
-        // score
+        /** @var array $results */
         $results = $this->container->get(Analyzer::class)
             ->score($listings, $resume);
 

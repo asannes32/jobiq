@@ -11,6 +11,7 @@ use jobiq\Domain\Factory\ParserFactory;
 use jobiq\Domain\Factory\ResumeFactory;
 use jobiq\Domain\Service\Analyzer;
 use jobiq\Domain\Service\IndeedClient;
+use jobiq\Domain\Service\JobFinder;
 use jobiq\Domain\Service\LinkedInClient;
 use jobiq\Domain\Service\PdfParser;
 use jobiq\Domain\Service\WordParser;
@@ -67,6 +68,10 @@ class DependencyProvider implements ServiceProviderInterface
 
         $container[Analyzer::class] = function (Container $container): Analyzer {
             return new Analyzer($container['logger']);
+        };
+
+        $container[JobFinder::class] = function (Container $container): JobFinder {
+            return new JobFinder($container);
         };
 
         /**
