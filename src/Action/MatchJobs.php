@@ -18,11 +18,19 @@ use Slim\Http\StatusCode;
 
 /**
  * Class MatchJobs
+ *
+ * Contains logic to run for the match-jobs endpoint
  */
 class MatchJobs
 {
+    /**
+     * @var ContainerInterface
+     */
     protected ContainerInterface $container;
 
+    /**
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container) {
         $this->container = $container;
     }
