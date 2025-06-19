@@ -5,6 +5,7 @@ namespace jobiq\Domain\Factory;
 use jobiq\Domain\Interface\Entity;
 use jobiq\Domain\Interface\Factory;
 use Pimple\Container;
+use SplFileInfo;
 
 class ReaderFactory implements Factory
 {
@@ -17,11 +18,13 @@ class ReaderFactory implements Factory
 
     public function create(array $details): Entity
     {
-        // todo - filetype isn't what we want
-        switch (filetype($details['path'])) {
-            case 'PDF':
+        $info = new SplFileInfo($details['path']);
+
+        switch ($info->getExtension()) {
+            case 'pdf':
                 return $this->container['PdfReader']->setPath($details['path']);
-            case 'Word':
+            case 'doc':
+            case 'docx':
                 return $this->container['WordReader']->setPath($details['path']);
         }
     }
